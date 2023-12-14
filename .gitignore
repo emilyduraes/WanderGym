@@ -40,6 +40,3 @@ target/*
 hs_err_pid*
 .vscode/launch.json
 
-#MavenWrapper
-.mvn
-
