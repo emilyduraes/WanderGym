@@ -28,9 +28,15 @@ public class FinalUserController {
         finalUserService.createFinalUser(request);
     }
 
-    @ApiOperation(value= "Find a WanderGym user by ID from the database")
-    @GetMapping(path = "/id/{finalUserId}")
-    public FinalUserResponse getFinalUser(@PathVariable Long finalUserId){
-        return new FinalUserResponse(finalUserService.findFinalUser(finalUserId));
+    @ApiOperation(value = "Find a WanderGym user by ID from the database")
+    @GetMapping(path = "/id/{id}")
+    public FinalUserResponse getFinalUser(@PathVariable Long id){
+        return new FinalUserResponse(finalUserService.findFinalUser(id));
+    }
+
+    @ApiOperation(value = "Delete a WanderGym user from the database by ID")
+    @DeleteMapping(path = "/id/{id}")
+    public void deleteFinalUser(@PathVariable Long id){
+        finalUserService.deleteFinalUser(id);
     }
 }

@@ -6,4 +6,5 @@ import ie.wandergym.domain.request.FinalUserRequest;
 public interface FinalUserService {
     void createFinalUser(FinalUserRequest request);
     FinalUserDto findFinalUser(Long id);
+    void deleteFinalUser(Long id);
 }
