@@ -37,4 +37,15 @@ public class FinalUserServiceImpl implements FinalUserService {
         FinalUser user = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         repository.delete(user);
     }
+
+    @Override
+    public void updateFinalUser(Long id, FinalUserRequest request) {
+        FinalUser user = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
+        user.setAddress(request.getAddress());
+        user.setDob(request.getDob());
+        user.setEmail(request.getEmail());
+        user.setFullName(request.getFullName());
+        user.setMobileNumber(request.getMobileNumber());
+        repository.save(user);
+    }
 }

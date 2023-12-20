@@ -7,4 +7,5 @@ public interface FinalUserService {
     void createFinalUser(FinalUserRequest request);
     FinalUserDto findFinalUser(Long id);
     void deleteFinalUser(Long id);
+    void updateFinalUser(Long id, FinalUserRequest request);
 }

@@ -39,4 +39,10 @@ public class FinalUserController {
     public void deleteFinalUser(@PathVariable Long id){
         finalUserService.deleteFinalUser(id);
     }
+
+    @ApiOperation(value = "Update a WanderGym user from the database by ID")
+    @PutMapping(path = "/id/{id}")
+    public void updateFinalUser(@PathVariable Long id, @RequestBody FinalUserRequest request){
+        finalUserService.updateFinalUser(id, request);
+    }
 }
