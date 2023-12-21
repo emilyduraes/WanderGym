@@ -9,7 +9,7 @@ import org.mapstruct.Mapper;
 // responsible to map the class and parse into other classes automatically via MapStruct plugin
 @Mapper()
 public interface BusinessMapper {
-    Business dtoToEntity(BusinessDto finalUserDto);
-    BusinessDto entityToDto(Business finalUser);
+    Business dtoToEntity(BusinessDto businessDto);
+    BusinessDto entityToDto(Business business);
     Business requestToEntity(BusinessRequest request);
 }
