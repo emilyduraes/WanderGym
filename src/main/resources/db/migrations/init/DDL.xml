@@ -28,4 +28,30 @@
     <changeSet author="Emily Duraes" id="20231219-2">
         <addUniqueConstraint columnNames="email" constraintName="UC_USEREMAIL_COL" tableName="final_user"/>
     </changeSet>
+
+    <changeSet author="Emily Duraes" id="20231219-3">
+        <createTable tableName="business">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="UserPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Emily Duraes" id="20231219-4">
+        <addUniqueConstraint columnNames="email" constraintName="UC_BUSINESSEMAIL_COL" tableName="business"/>
+    </changeSet>
 </databaseChangeLog>
