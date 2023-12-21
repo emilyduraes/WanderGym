@@ -42,7 +42,7 @@ public class FinalUserController {
 
     @ApiOperation(value = "Update a WanderGym user from the database by ID")
     @PutMapping(path = "/id/{id}")
-    public void updateFinalUser(@PathVariable Long id, @RequestBody FinalUserRequest request){
+    public void updateFinalUser(@PathVariable Long id, @RequestBody @Valid FinalUserRequest request){
         finalUserService.updateFinalUser(id, request);
     }
 }

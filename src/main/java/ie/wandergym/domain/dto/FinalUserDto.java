@@ -14,4 +14,5 @@ public class FinalUserDto {
     private String email;
     private String address;
     private Long mobileNumber;
+    private boolean active;
 }
