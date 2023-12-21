@@ -6,6 +6,7 @@ import ie.wandergym.domain.request.FinalUserRequest;
 import org.mapstruct.Mapper;
 
 // interface to configure MapStruct dependency for class Final User
+// responsible to map the class and parse into other classes automatically via MapStruct plugin
 @Mapper()
 public interface FinalUserMapper {
     FinalUser dtoToEntity(FinalUserDto finalUserDto);
