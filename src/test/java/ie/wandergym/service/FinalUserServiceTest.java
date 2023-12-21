@@ -33,7 +33,7 @@ public class FinalUserServiceTest {
         String name = "Astolfo";
         FinalUser user = getFinalUser(name);
         when(repository.findById(1L)).thenReturn(of(user));
-        FinalUserDto response = fixture.findFinalUser(1L);
+        FinalUserDto response = fixture.find(1L);
         Assertions.assertEquals(name, response.getFullName());
     }
 
@@ -41,7 +41,7 @@ public class FinalUserServiceTest {
     void testFindByIdNotFound(){
         when(repository.findById(1L)).thenReturn(empty());
         Assert.assertThrows(DataNotFoundException.class, () -> {
-            fixture.findFinalUser(1L);
+            fixture.find(1L);
         });
     }
 
@@ -51,7 +51,7 @@ public class FinalUserServiceTest {
 
         when(repository.findById(anyLong())).thenReturn(of(getFinalUser("Mark")));
 
-        fixture.deleteFinalUser(1L);
+        fixture.delete(1L);
 
         verify(repository).delete(finalUserCaptor.capture());
     }
@@ -60,7 +60,7 @@ public class FinalUserServiceTest {
     void testDeleteNotFound(){
         when(repository.findById(1L)).thenReturn(empty());
         Assert.assertThrows(DataNotFoundException.class, () -> {
-            fixture.deleteFinalUser(1L);
+            fixture.delete(1L);
         });
     }
 
@@ -69,7 +69,7 @@ public class FinalUserServiceTest {
         FinalUserRequest finalUserRequest = getFinalUserRequest();
         when(repository.findById(1L)).thenReturn(empty());
         Assert.assertThrows(DataNotFoundException.class, () -> {
-            fixture.updateFinalUser(1L, finalUserRequest);
+            fixture.update(1L, finalUserRequest);
         });
     }
 

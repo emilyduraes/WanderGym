@@ -24,25 +24,25 @@ public class FinalUserController {
     @ApiOperation(value = "Insert a new user into the database")
     @PostMapping(path = "/signin", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createFinalUser(@RequestBody @Valid FinalUserRequest request) {
-        finalUserService.createFinalUser(request);
+    public void create(@RequestBody @Valid FinalUserRequest request) {
+        finalUserService.create(request);
     }
 
     @ApiOperation(value = "Find a WanderGym user by ID from the database")
     @GetMapping(path = "/id/{id}")
-    public FinalUserResponse getFinalUser(@PathVariable Long id){
-        return new FinalUserResponse(finalUserService.findFinalUser(id));
+    public FinalUserResponse get(@PathVariable Long id){
+        return new FinalUserResponse(finalUserService.find(id));
     }
 
     @ApiOperation(value = "Delete a WanderGym user from the database by ID")
     @DeleteMapping(path = "/id/{id}")
-    public void deleteFinalUser(@PathVariable Long id){
-        finalUserService.deleteFinalUser(id);
+    public void delete(@PathVariable Long id){
+        finalUserService.delete(id);
     }
 
     @ApiOperation(value = "Update a WanderGym user from the database by ID")
     @PutMapping(path = "/id/{id}")
-    public void updateFinalUser(@PathVariable Long id, @RequestBody @Valid FinalUserRequest request){
-        finalUserService.updateFinalUser(id, request);
+    public void update(@PathVariable Long id, @RequestBody @Valid FinalUserRequest request){
+        finalUserService.update(id, request);
     }
 }

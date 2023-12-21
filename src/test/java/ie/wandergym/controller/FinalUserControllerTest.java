@@ -65,7 +65,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
         long id = 1L;
 
         FinalUserDto finalUserDto = getFinalUserDto();
-        when(finalUserService.findFinalUser(anyLong())).thenReturn(finalUserDto);
+        when(finalUserService.find(anyLong())).thenReturn(finalUserDto);
 
         mvc.perform(get(url + id))
                 .andExpect(status().isOk())
@@ -82,7 +82,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
         url = "/user/id/";
 
         FinalUserDto finalUserDto = getFinalUserDto();
-        when(finalUserService.findFinalUser(anyLong())).thenReturn(finalUserDto);
+        when(finalUserService.find(anyLong())).thenReturn(finalUserDto);
 
         mvc.perform(get(url))
                 .andExpect(status().isNotFound())

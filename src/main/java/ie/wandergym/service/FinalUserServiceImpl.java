@@ -21,25 +21,25 @@ public class FinalUserServiceImpl implements FinalUserService {
     }
 
     @Override
-    public void createFinalUser(FinalUserRequest request) {
+    public void create(FinalUserRequest request) {
         FinalUser user = MAPPER.requestToEntity(request);
         repository.save(user);
     }
 
     @Override
-    public FinalUserDto findFinalUser(Long id) {
+    public FinalUserDto find(Long id) {
         FinalUser user = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         return MAPPER.entityToDto(user);
     }
 
     @Override
-    public void deleteFinalUser(Long id) {
+    public void delete(Long id) {
         FinalUser user = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         repository.delete(user);
     }
 
     @Override
-    public void updateFinalUser(Long id, FinalUserRequest request) {
+    public void update(Long id, FinalUserRequest request) {
         FinalUser user = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         user.setAddress(request.getAddress());
         user.setDob(request.getDob());
