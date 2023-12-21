@@ -27,7 +27,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     public static final LocalDate DATE_OF_BIRTH = LocalDate.parse("1989-05-21");
 
     @MockBean
-    private FinalUserServiceImpl finalUserService;
+    private FinalUserServiceImpl service;
 
 
     @Test
@@ -65,7 +65,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
         long id = 1L;
 
         FinalUserDto finalUserDto = getFinalUserDto();
-        when(finalUserService.find(anyLong())).thenReturn(finalUserDto);
+        when(service.find(anyLong())).thenReturn(finalUserDto);
 
         mvc.perform(get(url + id))
                 .andExpect(status().isOk())
@@ -82,7 +82,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
         url = "/user/id/";
 
         FinalUserDto finalUserDto = getFinalUserDto();
-        when(finalUserService.find(anyLong())).thenReturn(finalUserDto);
+        when(service.find(anyLong())).thenReturn(finalUserDto);
 
         mvc.perform(get(url))
                 .andExpect(status().isNotFound())
