@@ -14,35 +14,35 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController()
 @RequestMapping("/user")
 public class FinalUserController {
-    private final FinalUserService finalUserService;
+    private final FinalUserService service;
 
     // class constructor
-    public FinalUserController(FinalUserService finalUserService){
-        this.finalUserService = finalUserService;
+    public FinalUserController(FinalUserService service){
+        this.service = service;
     }
 
     @ApiOperation(value = "Insert a new user into the database")
     @PostMapping(path = "/signin", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid FinalUserRequest request) {
-        finalUserService.create(request);
+        service.create(request);
     }
 
     @ApiOperation(value = "Find a WanderGym user by ID from the database")
     @GetMapping(path = "/id/{id}")
     public FinalUserResponse get(@PathVariable Long id){
-        return new FinalUserResponse(finalUserService.find(id));
+        return new FinalUserResponse(service.find(id));
     }
 
     @ApiOperation(value = "Delete a WanderGym user from the database by ID")
     @DeleteMapping(path = "/id/{id}")
     public void delete(@PathVariable Long id){
-        finalUserService.delete(id);
+        service.delete(id);
     }
 
     @ApiOperation(value = "Update a WanderGym user from the database by ID")
     @PutMapping(path = "/id/{id}")
     public void update(@PathVariable Long id, @RequestBody @Valid FinalUserRequest request){
-        finalUserService.update(id, request);
+        service.update(id, request);
     }
 }
