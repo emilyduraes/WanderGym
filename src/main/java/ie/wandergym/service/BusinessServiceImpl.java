@@ -3,7 +3,6 @@ package ie.wandergym.service;
 import ie.wandergym.domain.dto.BusinessDto;
 import ie.wandergym.domain.entity.Business;
 import ie.wandergym.domain.request.BusinessRequest;
-import ie.wandergym.domain.response.BusinessListResponse;
 import ie.wandergym.exception.DataNotFoundException;
 import ie.wandergym.mapper.BusinessMapper;
 import ie.wandergym.repository.BusinessRepository;
