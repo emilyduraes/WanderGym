@@ -6,6 +6,8 @@ import ie.wandergym.service.BusinessServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Collections;
+
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -87,6 +89,29 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    void testGetByName() throws Exception {
+        url = "/business/name/";
+        String name = "Gym";
+
+        when(service.findByName(name)).thenReturn(Collections.singletonList(getBusinessDto()));
+
+        mvc.perform(get(url + name))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    void testGetAll() throws Exception {
+        url = "/business/all";
+
+        when(service.findAllBusinesses()).thenReturn(Collections.singletonList(getBusinessDto()));
+
+        mvc.perform(get(url))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
     void testUpdate() throws Exception {
         url = "/business/id/";
         long id = 1L;
@@ -144,6 +169,16 @@ public class BusinessControllerTest  extends AbstractControllerTest{
 
         mvc.perform(post(url + id))
                 .andExpect(status().isMethodNotAllowed())
+                .andDo(print());
+    }
+
+    @Test
+    void testDeactivate() throws Exception{
+        url = "/business/id/";
+        long id = 1L;
+
+        mvc.perform(patch(url + id + "/deactivate"))
+                .andExpect(status().isOk())
                 .andDo(print());
     }
 

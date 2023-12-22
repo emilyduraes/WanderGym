@@ -13,9 +13,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,6 +48,33 @@ public class BusinessServiceTest {
             Assert.assertThrows(DataNotFoundException.class, () -> {
                 fixture.find(1L);
             });
+        }
+
+        @Test
+        void testFindByNameNotFound(){
+            when(repository.findByName(anyString())).thenReturn(empty());
+
+            Assert.assertThrows(DataNotFoundException.class, () -> {
+                fixture.findByName("Some name");
+            });
+        }
+
+        @Test
+        void testFindByNameInactive(){
+            Business business = getBusiness("Not so Awesome Gym");
+            business.setActive(false);
+            when(repository.findByName(anyString())).thenReturn(of(singletonList(business)));
+
+            List<BusinessDto> result = fixture.findByName("Some gym");
+            Assertions.assertTrue(result.isEmpty());
+        }
+
+        @Test
+        void testFindByName(){
+            when(repository.findByName(anyString())).thenReturn(of(singletonList(getBusiness("Awesome Gym"))));
+
+            List<BusinessDto> result = fixture.findByName("Awesome Gym");
+            Assertions.assertFalse(result.isEmpty());
         }
 
         @Test

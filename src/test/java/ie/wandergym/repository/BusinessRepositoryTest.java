@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.List;
 import java.util.Optional;
 
 public class BusinessRepositoryTest  extends AbstractRepositoryTest<BusinessRepository, Business> {
@@ -43,6 +44,15 @@ public class BusinessRepositoryTest  extends AbstractRepositoryTest<BusinessRepo
     void testFindByIdNoResult(){
         Optional<Business> result = repository.findById(Long.MAX_VALUE);
         Assertions.assertFalse(result.isPresent());
+    }
+
+    @Test
+    void testFindByName(){
+        Business business = buildEntity();
+        repository.save(business);
+
+        Optional<List<Business>> result = repository.findByName(business.getName());
+        Assertions.assertEquals(business.getName(), result.get().stream().findFirst().get().getName());
     }
 
     @Override
