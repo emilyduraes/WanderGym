@@ -1,6 +1,7 @@
 package ie.wandergym.controller;
 
 import ie.wandergym.domain.request.BusinessRequest;
+import ie.wandergym.domain.response.BusinessListResponse;
 import ie.wandergym.domain.response.BusinessResponse;
 import ie.wandergym.service.BusinessService;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +35,18 @@ public class BusinessController {
         return new BusinessResponse(service.find(id));
     }
 
+    @ApiOperation(value = "Recover a fitness partner by name")
+    @GetMapping(path = "/name/{name}")
+    public BusinessListResponse getByName(@PathVariable String name){
+        return new BusinessListResponse(service.findByName(name));
+    }
+
+    @ApiOperation(value = "Recover all available fitness partners")
+    @GetMapping(path = "/all")
+    public BusinessListResponse getAllBusinesses(){
+        return new BusinessListResponse(service.findAllBusinesses());
+    }
+
     @ApiOperation(value = "Delete a business partner from the database by ID")
     @DeleteMapping(path = "/id/{id}")
     public void delete(@PathVariable Long id){
@@ -44,5 +57,11 @@ public class BusinessController {
     @PutMapping(path = "/id/{id}")
     public void update(@PathVariable Long id, @RequestBody @Valid BusinessRequest request){
         service.update(id, request);
+    }
+
+    @ApiOperation(value = "Deactivate a business partner account in the database")
+    @PatchMapping(path = "/id/{id}/deactivate")
+    public void deactivate(@PathVariable Long id){
+        service.deactivate(id);
     }
 }
