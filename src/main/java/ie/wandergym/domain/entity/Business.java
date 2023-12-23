@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Business {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // generates a random number automatically for the field ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // generates a number automatically for the field ID
     private Long id;
 
     @Column(nullable = false)
