@@ -47,6 +47,7 @@ public class SessionServiceImpl implements SessionService {
         Long dailyAttendance = repository.countByBusinessId_daily(businessId);
         Long monthlyAttendance = repository.countByBusinessId_monthly(businessId);
         SessionDto dto = new SessionDto();
+        dto.setBusinessId(businessId);
         dto.setDailyAttendance(dailyAttendance);
         dto.setMonthlyAttendance(monthlyAttendance);
         return dto;
