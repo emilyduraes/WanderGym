@@ -1,6 +1,7 @@
 package ie.wandergym.controller;
 
 import ie.wandergym.domain.request.SessionRequest;
+import ie.wandergym.domain.response.SessionResponse;
 import ie.wandergym.service.SessionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -27,4 +28,12 @@ public class SessionController {
     public void start(@RequestBody @Valid SessionRequest request) {
         service.start(request);
     }
+
+    @ApiOperation(value = "Get gym monthly and daily users attendance")
+    @GetMapping(path = "/{businessId}/attendance")
+    @ResponseStatus(HttpStatus.OK)
+    public SessionResponse getAttendance(@PathVariable Long businessId) {
+        return new SessionResponse(service.getAttendance(businessId));
+    }
+
 }
