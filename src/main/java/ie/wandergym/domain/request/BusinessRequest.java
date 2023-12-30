@@ -32,4 +32,13 @@ public class BusinessRequest {
     @ApiModelProperty(name = "phoneNumber")
     @Positive(message = "Invalid phone number number")
     private Long phoneNumber;
+
+    @ApiModelProperty(name = "type")
+    @NotEmpty(message = "The type cannot be null or empty")
+    private String type;
+
+    @ApiModelProperty(name = "description")
+    @NotEmpty(message = "The description cannot be null or empty")
+    private String description;
+
 }

@@ -12,5 +12,7 @@ public class BusinessDto {
     private String email;
     private String address;
     private Long phoneNumber;
+    private String description;
+    private String type;
     private boolean active;
 }

@@ -27,6 +27,12 @@ public class Business {
     private Long phoneNumber;
 
     @Column(nullable = false)
+    private String type;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = false)
     private boolean active;
 
     // class constructor
