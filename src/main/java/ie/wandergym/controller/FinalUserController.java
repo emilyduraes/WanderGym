@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/user")
 public class FinalUserController {

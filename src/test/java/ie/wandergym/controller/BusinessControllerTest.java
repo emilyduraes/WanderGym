@@ -25,6 +25,8 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     public static final String EMAIL = "gym_email@domain.com";
     public static final String BAD_EMAIL = "email";
     public static final String ADDRESS = "1, Address, City, Country";
+    public static final String TYPE = "Gym";
+    public static final String DESCRIPTION = "Gym description";
 
     @MockBean
     private BusinessServiceImpl service;
@@ -71,6 +73,8 @@ public class BusinessControllerTest  extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.business.name", is(businessDto.getName())))
                 .andExpect(jsonPath("$.business.email", is(businessDto.getEmail())))
+                .andExpect(jsonPath("$.business.type", is(businessDto.getType())))
+                .andExpect(jsonPath("$.business.description", is(businessDto.getDescription())))
                 .andExpect(jsonPath("$.business.phoneNumber").isNumber())
                 .andExpect(jsonPath("$.business.active", is(businessDto.isActive())))
                 .andDo(print());
@@ -188,6 +192,8 @@ public class BusinessControllerTest  extends AbstractControllerTest{
         request.setAddress(ADDRESS);
         request.setEmail(EMAIL);
         request.setPhoneNumber(PHONE_NUMBER);
+        request.setDescription(DESCRIPTION);
+        request.setType(TYPE);
         return request;
     }
 
@@ -197,6 +203,8 @@ public class BusinessControllerTest  extends AbstractControllerTest{
         dto.setAddress(ADDRESS);
         dto.setEmail(EMAIL);
         dto.setPhoneNumber(PHONE_NUMBER);
+        dto.setDescription(DESCRIPTION);
+        dto.setType(TYPE);
         return dto;
     }
 }

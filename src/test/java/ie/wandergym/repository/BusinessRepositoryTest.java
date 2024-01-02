@@ -62,6 +62,8 @@ public class BusinessRepositoryTest  extends AbstractRepositoryTest<BusinessRepo
         business.setAddress("1, Address, City, Country");
         business.setEmail("gym_email@domain.com");
         business.setPhoneNumber(9999999L);
+        business.setDescription("Gym description");
+        business.setType("Gym");
         return business;
     }
 }
