@@ -5,6 +5,7 @@ import ie.wandergym.domain.response.FinalUserResponse;
 import ie.wandergym.service.FinalUserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/user")
+@PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")
 public class FinalUserController {
     private final FinalUserService service;
 

@@ -83,4 +83,28 @@
     <changeSet author="Emily Duraes" id="20231219-7">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="session" constraintName="FK_SESSION_USER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="final_user"/>
     </changeSet>
+    <changeSet author="Emily Duraes" id="20231219-8">
+        <createTable tableName="auth">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="AuthUserPK"/>
+            </column>
+            <column name="username" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="CHAR(90)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="final_user" type="BIGINT"/>
+            <column name="business" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Emily Duraes" id="20231219-9">
+        <addForeignKeyConstraint baseColumnNames="business" baseTableName="auth" constraintName="FK_AUTH_BUSINESS" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="business"/>
+    </changeSet>
+    <changeSet author="Emily Duraes" id="20231219-10">
+        <addForeignKeyConstraint baseColumnNames="final_user" baseTableName="auth" constraintName="FK_AUTH_F_USER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="final_user"/>
+    </changeSet>
 </databaseChangeLog>
