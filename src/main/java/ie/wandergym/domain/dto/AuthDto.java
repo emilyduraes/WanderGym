@@ -18,7 +18,6 @@ public class AuthDto {
     private String role;
     private Business business;
     private FinalUser user;
-    @JsonProperty("basic_authorization")
     private Collection<? extends GrantedAuthority> authorities;
     private String basicAuthorization;
 }
