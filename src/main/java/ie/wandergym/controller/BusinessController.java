@@ -27,7 +27,6 @@ public class BusinessController {
     @ApiOperation(value = "Insert a new business into the database")
     @PostMapping(path = "/signin", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasAnyRole('BUSINESS', 'SYSADMIN')")
     public void create(@RequestBody @Valid BusinessRequest request) {
         service.create(request);
     }

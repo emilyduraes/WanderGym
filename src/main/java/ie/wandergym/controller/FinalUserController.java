@@ -15,7 +15,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/user")
-@PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")
 public class FinalUserController {
     private final FinalUserService service;
 
@@ -33,18 +32,21 @@ public class FinalUserController {
 
     @ApiOperation(value = "Find a WanderGym user by ID from the database")
     @GetMapping(path = "/id/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")
     public FinalUserResponse get(@PathVariable Long id){
         return new FinalUserResponse(service.find(id));
     }
 
     @ApiOperation(value = "Delete a WanderGym user from the database by ID")
     @DeleteMapping(path = "/id/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")
     public void delete(@PathVariable Long id){
         service.delete(id);
     }
 
     @ApiOperation(value = "Update a WanderGym user from the database by ID")
     @PutMapping(path = "/id/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")
     public void update(@PathVariable Long id, @RequestBody @Valid FinalUserRequest request){
         service.update(id, request);
     }
