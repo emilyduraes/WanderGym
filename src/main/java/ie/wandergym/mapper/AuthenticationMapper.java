@@ -10,7 +10,6 @@ import org.mapstruct.Mapping;
 public interface AuthenticationMapper {
     @Mapping(target = "authorities", ignore = true)
     Auth dtoToEntity(AuthDto dto);
-    @Mapping(target = "authorities", ignore = true)
     AuthDto entityToDto(Auth user);
     @Mapping(target = "authorities", ignore = true)
     Auth requestToEntity(AuthRequest request);

@@ -66,10 +66,11 @@ public class AuthServiceImpl implements AuthService {
             securityContext.setAuthentication(authentication);
 
             Auth user = (Auth) authentication.getPrincipal();
-            AuthDto authDto = new AuthDto();
-            authDto.setAuthorities(user.getAuthorities());
-            authDto.setBusiness(user.getBusiness());
-            authDto.setUser(user.getUser());
+            AuthDto authDto = MAPPER.entityToDto(user);
+//            authDto.setAuthorities(user.getAuthorities());
+//            authDto.setUsername(user.getUsername());
+//            authDto.setBusiness(user.getBusiness());
+//            authDto.setUser(user.getUser());
             authDto.setBasicAuthorization("Basic " +
                     Base64Utils.encodeToString(
                             String.format("%s:%s", request.getEmail(), request.getPassword())
