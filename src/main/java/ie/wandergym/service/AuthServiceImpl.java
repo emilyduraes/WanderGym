@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginDto login(LoginRequest request) throws Exception {
         UsernamePasswordAuthenticationToken authenticationTokenRequest = new
-                UsernamePasswordAuthenticationToken(request.getEmail(),
+                UsernamePasswordAuthenticationToken(request.getUsername(),
                 request.getPassword());
 
         try {
@@ -67,13 +67,9 @@ public class AuthServiceImpl implements AuthService {
 
             Auth user = (Auth) authentication.getPrincipal();
             AuthDto authDto = MAPPER.entityToDto(user);
-//            authDto.setAuthorities(user.getAuthorities());
-//            authDto.setUsername(user.getUsername());
-//            authDto.setBusiness(user.getBusiness());
-//            authDto.setUser(user.getUser());
             authDto.setBasicAuthorization("Basic " +
                     Base64Utils.encodeToString(
-                            String.format("%s:%s", request.getEmail(), request.getPassword())
+                            String.format("%s:%s", request.getUsername(), request.getPassword())
                                     .getBytes()));
 
             return new LoginDto(HttpStatus.OK, MsgLoginResponse.OK, authDto);
