@@ -37,6 +37,13 @@ public class FinalUserController {
         return new FinalUserResponse(service.find(id));
     }
 
+    @ApiOperation(value = "Find a WanderGym user by email from the database")
+    @GetMapping(path = "/email/{email:.+}")
+    @PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")
+    public FinalUserResponse getByEmail(@PathVariable String email){
+        return new FinalUserResponse(service.findByEmail(email));
+    }
+
     @ApiOperation(value = "Delete a WanderGym user from the database by ID")
     @DeleteMapping(path = "/id/{id}")
     @PreAuthorize("hasAnyRole('USER', 'SYSADMIN')")

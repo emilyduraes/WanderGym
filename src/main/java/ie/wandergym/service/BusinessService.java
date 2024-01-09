@@ -8,6 +8,7 @@ import java.util.List;
 public interface BusinessService {
     void create(BusinessRequest request);
     BusinessDto find(Long id);
+    BusinessDto findByEmail(String email);
     List<BusinessDto> findByName(String name);
     List<BusinessDto> findAllBusinesses();
     void delete(Long id);

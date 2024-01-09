@@ -36,6 +36,12 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    public BusinessDto findByEmail(String email) {
+        Business business = repository.findByEmail(email).orElseThrow(() -> new DataNotFoundException(email));
+        return MAPPER.entityToDto(business);
+    }
+
+    @Override
     public List<BusinessDto> findByName(String name) {
         return repository.findByName(name)
                 .orElseThrow(() -> new DataNotFoundException(String.join(" ", name)))

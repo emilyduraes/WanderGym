@@ -38,6 +38,13 @@ public class BusinessController {
         return new BusinessResponse(service.find(id));
     }
 
+    @ApiOperation(value = "Find a WanderGym business by email from the database")
+    @GetMapping(path = "/email/{email:.+}")
+    @PreAuthorize("hasAnyRole('BUSINESS', 'SYSADMIN')")
+    public BusinessResponse getByEmail(@PathVariable String email){
+        return new BusinessResponse(service.findByEmail(email));
+    }
+
     @ApiOperation(value = "Recover a fitness partner by name")
     @GetMapping(path = "/name/{name}")
     @PreAuthorize("hasAnyRole('BUSINESS', 'SYSADMIN', 'USER')")

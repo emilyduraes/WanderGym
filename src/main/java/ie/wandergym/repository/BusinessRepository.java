@@ -12,6 +12,9 @@ import java.util.Optional;
 @Repository
 public interface BusinessRepository  extends JpaRepository<Business, Long> {
 
+    // custom query to retrieve business by email
+    Optional<Business> findByEmail(@Param("email") String email);
+
     // custom query to retrieve all business as defined by user search
     @Query("SELECT t FROM Business t WHERE lower(t.name) LIKE lower(concat('%', concat(:name, '%')))")
     Optional<List<Business>> findByName(@Param("name") String name);

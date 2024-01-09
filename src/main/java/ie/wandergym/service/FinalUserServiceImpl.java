@@ -33,6 +33,12 @@ public class FinalUserServiceImpl implements FinalUserService {
     }
 
     @Override
+    public FinalUserDto findByEmail(String email) {
+        FinalUser user = repository.findByEmail(email).orElseThrow(() -> new DataNotFoundException(email));
+        return MAPPER.entityToDto(user);
+    }
+
+    @Override
     public void delete(Long id) {
         FinalUser user = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         repository.delete(user);
