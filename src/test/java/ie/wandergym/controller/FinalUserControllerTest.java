@@ -5,6 +5,7 @@ import ie.wandergym.domain.request.FinalUserRequest;
 import ie.wandergym.service.FinalUserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.LocalDate;
 
@@ -31,6 +32,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
 
 
     @Test
+    @WithMockUser
     void testPostIsBadRequest() throws Exception {
         url = "/user/signin";
 
@@ -46,6 +48,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testPost() throws Exception {
         url = "/user/signin";
 
@@ -60,6 +63,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testGetById() throws Exception {
         url = "/user/id/";
         long id = 1L;
@@ -78,6 +82,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testGetByIdIsNotFound() throws Exception {
         url = "/user/id/";
 
@@ -90,6 +95,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testUpdate() throws Exception {
         url = "/user/id/";
         long id = 1L;
@@ -105,6 +111,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testUpdateIsNotFound() throws Exception {
         url = "/user/id/";
 
@@ -115,6 +122,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testUpdateIsBadRequest() throws Exception {
         url = "/user/id/";
         long id = 1L;
@@ -131,6 +139,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testDelete() throws Exception{
         url = "/user/id/";
         long id = 1L;
@@ -141,6 +150,7 @@ public class FinalUserControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser
     void testDeleteIsNotAllowed() throws Exception{
         url = "/user/id/";
         long id = 1L;

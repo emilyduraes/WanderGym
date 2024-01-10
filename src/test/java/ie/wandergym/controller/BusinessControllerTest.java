@@ -5,6 +5,7 @@ import ie.wandergym.domain.request.BusinessRequest;
 import ie.wandergym.service.BusinessServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.Collections;
 
@@ -33,6 +34,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
 
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testPostIsBadRequest() throws Exception {
         url = "/business/signin";
 
@@ -48,6 +50,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testPost() throws Exception {
         url = "/business/signin";
 
@@ -62,6 +65,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testGetById() throws Exception {
         url = "/business/id/";
         long id = 1L;
@@ -81,6 +85,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testGetByIdIsNotFound() throws Exception {
         url = "/business/id/";
 
@@ -93,6 +98,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testGetByName() throws Exception {
         url = "/business/name/";
         String name = "Gym";
@@ -105,6 +111,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testGetAll() throws Exception {
         url = "/business/all";
 
@@ -116,6 +123,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testUpdate() throws Exception {
         url = "/business/id/";
         long id = 1L;
@@ -131,6 +139,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testUpdateIsNotFound() throws Exception {
         url = "/business/id/";
 
@@ -141,6 +150,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testUpdateIsBadRequest() throws Exception {
         url = "/business/id/";
         long id = 1L;
@@ -157,6 +167,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testDelete() throws Exception{
         url = "/business/id/";
         long id = 1L;
@@ -167,6 +178,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testDeleteIsNotAllowed() throws Exception{
         url = "/business/id/";
         long id = 1L;
@@ -177,6 +189,7 @@ public class BusinessControllerTest  extends AbstractControllerTest{
     }
 
     @Test
+    @WithMockUser(roles = {"BUSINESS"})
     void testDeactivate() throws Exception{
         url = "/business/id/";
         long id = 1L;
