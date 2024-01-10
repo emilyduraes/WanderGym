@@ -77,6 +77,40 @@
 							"response": []
 						},
 						{
+							"name": "Find an user by email",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/wandergym/user/email/user@wandergym.ie",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wandergym",
+										"user",
+										"email",
+										"user@wandergym.ie"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Delete an user by ID",
 							"request": {
 								"method": "DELETE",
@@ -193,6 +227,40 @@
 										"business",
 										"id",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find a business partner by email",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/wandergym/business/email/agoravai4@provider.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wandergym",
+										"business",
+										"email",
+										"agoravai4@provider.com"
 									]
 								}
 							},
@@ -422,7 +490,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"user@wandergym.ie\",\r\n  \"password\": \"password\",\r\n  \"role\": \"ROLE_USER\"\r\n}",
+									"raw": "{\r\n  \"username\": \"admin@wandergym.ie\",\r\n  \"password\": \"password\",\r\n  \"role\": \"ROLE_SYSADMIN\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -452,7 +520,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"admin@wandergym.ie\",\r\n  \"password\": \"password\"\r\n}",
+									"raw": "{\r\n  \"username\": \"admin@wandergym.ie\",\r\n  \"password\": \"password\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
