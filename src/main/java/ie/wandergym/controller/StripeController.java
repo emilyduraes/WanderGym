@@ -24,38 +24,33 @@ public class StripeController {
     // create a Gson object
     private static Gson gson = new Gson();
 
-    @PostMapping("/payment")
+    @PostMapping("/subscription")
     /**
-     * Payment with Stripe checkout page
-     *
+     * Used to create a subscription with strpe checkout page
+     * @param checkout
+     * @return the subscription id
      * @throws StripeException
      */
-    public String paymentWithCheckoutPage(@RequestBody CheckoutPayment payment) throws StripeException {
-        // We initilize stripe object with the api key
+    public String subscriptionWithCheckoutPage(@RequestBody CheckoutPayment checkout) throws StripeException {
         init();
-        // We create a  stripe session parameters
-        SessionCreateParams params = SessionCreateParams.builder()
-                // We will use the credit card payment method
-                .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
-                .setMode(SessionCreateParams.Mode.PAYMENT).setSuccessUrl(payment.getSuccessUrl())
-                .setCancelUrl(
-                        payment.getCancelUrl())
-                .addLineItem(
-                        SessionCreateParams.LineItem.builder().setQuantity(payment.getQuantity())
-                                .setPriceData(
-                                        SessionCreateParams.LineItem.PriceData.builder()
-                                                .setCurrency(payment.getCurrency()).setUnitAmount(payment.getAmount())
-                                                .setProductData(SessionCreateParams.LineItem.PriceData.ProductData
-                                                        .builder().setName(payment.getName()).build())
-                                                .build())
-                                .build())
+
+        SessionCreateParams params = new SessionCreateParams.Builder().setSuccessUrl(checkout.getSuccessUrl())
+                .setCancelUrl(checkout.getCancelUrl()).addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
+                .setMode(SessionCreateParams.Mode.SUBSCRIPTION).addLineItem(new SessionCreateParams.LineItem.Builder()
+                        .setQuantity(1L).setPrice(checkout.getPriceId()).build())
                 .build();
-        // create a stripe session
-        Session session = Session.create(params);
-        Map<String, String> responseData = new HashMap<>();
-        // We get the sessionId and we putted inside the response data you can get more info from the session object
-        responseData.put("id", session.getId());
-        // We can return only the sessionId as a String
-        return gson.toJson(responseData);
+
+        try {
+            Session session = Session.create(params);
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("sessionId", session.getId());
+            return gson.toJson(responseData);
+        } catch (Exception e) {
+            Map<String, Object> messageData = new HashMap<>();
+            messageData.put("message", e.getMessage());
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("error", messageData);
+            return gson.toJson(responseData);
+        }
     }
 }
